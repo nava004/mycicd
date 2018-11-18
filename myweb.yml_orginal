@@ -5,8 +5,9 @@
 
   vars:
     tomcat_folder: bin
-    tomcat_path: "/root/tomcat/apache-tomcat-8.5.34/{{ tomcat_folder }}"
-    grep_string: "[/]root/tomcat/apache-tomcat-8.5.34/{{ tomcat_folder }}"
+    tomcat_path: "/root/tomcat/{{ tomcat_folder }}"
+    grep_string: "[/]root/tomcat/{{ tomcat_folder }}"
+
   tasks:
     - name: Copying the war file to the destination
       copy: src=/root/myweb/myweb-0.12.0.war dest="{{ tomcat_path }}/../webapps/"
