@@ -5,14 +5,14 @@
 
   vars:
     tomcat8_folder: bin
-    tomcat8_path: "/root/tomcat8/apache-tomcat8-8.5.34/{{ tomcat8_folder }}"
-    grep_string: "[/]root/tomcat8/apache-tomcat8-8.5.34/{{ tomcat8_folder }}"
+    tomcat8_path: "/root/tomcat8/{{ tomcat8_folder }}"
+    grep_string: "[/]root/tomcat8/{{ tomcat8_folder }}"
   tasks:
     - name: Copying the war file to the destination
       copy: src=/root/myweb/myweb-0.12.0.war dest="{{ tomcat8_path }}/../webapps/"
 
     - name: ==> shutdown qle tomcat8 ,path = "{{ tomcat8_path }}/bin/"
-      command: sh {{ tomcat8_path }}/shutdown.sh
+      command: sh {{tomcat8_path}}/shutdown.sh
 
     - name: ==> sleep 3s
       command: sleep 3s
@@ -35,3 +35,4 @@
 
     - name: ==> startup qle tomcat8 , path = {{ tomcat8_path }}/startup.sh
       shell: setsid /bin/sh -i -c "{{ tomcat8_path }}/startup.sh"
+
